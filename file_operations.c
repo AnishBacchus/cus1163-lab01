@@ -6,28 +6,56 @@
 #include "file_operations.h"
 
 int create_and_write_file(const char *filename, const char *content) {
-    // TODO: Declare an integer 'fd' for the file descriptor.
-    // TODO: Declare a variable 'bytes_written' of type ssize_t to store how many bytes are written.
+    
+	int fd;
 
-    // TODO: Print a message showing which file is being created.
-    // TODO: Print a message showing what content will be written.
+        ssize_t bytes_written;
 
+    	printf("%s is being created.", filename);
+	printf("%s will be written.", content);
+
+	
     // TODO: Open or create the file for writing using the open() system call.
     // TODO: Use flags O_CREAT | O_WRONLY | O_TRUNC and permissions 0644.
     // TODO: Check if open() failed (fd == -1). If so, print an error using perror and return -1.
+	
+	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	
+	if(fd == -1){
+	perror("Error");
+	return -1;
+	}
 
     // TODO: Print the file descriptor value.
+
+	printf("value: %d", fd);
 
     // TODO: Write the content to the file using the write() system call.
     // TODO: Use the length of 'content' as the size to write.
     // TODO: Check if write() failed (bytes_written == -1). If so, print an error using perror, close the file, and return -1.
 
+	bytes_written = write(fd, content, strlen(content));
+	
+	if(bytes_written == -1){
+	perror("Error")
+	return -1;
+	}
+
     // TODO: Print a success message with the number of bytes written and the filename.
 
+	printf("%zd bytes written for %s.", bytes_written, filename); 
     // TODO: Close the file using close(fd).
     // TODO: Check if close() failed. If so, print an error using perror and return -1.
 
+	close(fd);
+
+	if(close(fd) == -1){
+	perror("Error closing");
+	return 1;
+	}
+
     // TODO: Print a message that the file was closed successfully.
+	printf("File closed successfully!");
     return 0;
 }
 
