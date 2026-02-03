@@ -66,7 +66,7 @@ int read_file_contents(const char *filename) {
     // TODO: Declare a variable 'bytes_read' of type ssize_t to store how many bytes are read.
 
 	int fd;
-	char buffer[1024};
+	char buffer[1024];
 	ssize_t bytes_read;
 
     // TODO: Print a message showing which file is being read.
@@ -89,7 +89,7 @@ int read_file_contents(const char *filename) {
 
 	printf("value: %d\n", fd);
 	printf("======================");
-	printf("File Contents")
+	printf("File Contents");
 	printf("======================");
 
     // TODO: Read the file contents using the read() system call in a loop.
@@ -98,7 +98,7 @@ int read_file_contents(const char *filename) {
     // TODO: Print the contents of the buffer.
     // TODO: Continue reading until read() returns 0.
 
-	while((bytes_read = read(fd, buffer, sizeOf(buffer) - 1)) > 0){
+	while((bytes_read = read(fd, buffer, sizeof(buffer) - 1)) > 0){
 	buffer[bytes_read] = '\0';
 	printf("%s", buffer);
 
@@ -126,5 +126,6 @@ int read_file_contents(const char *filename) {
     // TODO: Print a message that the file was closed successfully.
 
 	printf("File closed successfully!");
+
     return 0;
 }
