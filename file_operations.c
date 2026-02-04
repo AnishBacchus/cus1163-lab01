@@ -47,8 +47,6 @@ int create_and_write_file(const char *filename, const char *content) {
  
     // TODO: Close the file using close(fd).
     // TODO: Check if close() failed. If so, print an error using perror and return -1.
-	
-	close(fd);
 
 	if(close(fd) == -1){
 	perror("Error closing");
@@ -101,6 +99,7 @@ int read_file_contents(const char *filename) {
 	while((bytes_read = read(fd, buffer, sizeof(buffer) - 1)) > 0){
 	buffer[bytes_read] = '\0';
 	printf("%s", buffer);
+	}
 
     // TODO: Check if read() failed (bytes_read == -1). If so, print an error using perror, close the file, and return -1.
 
@@ -116,7 +115,6 @@ int read_file_contents(const char *filename) {
     // TODO: Close the file using close(fd).
     // TODO: Check if close() failed. If so, print an error using perror and return -1.
 
-	close(fd);
 
         if(close(fd) == -1){
         perror("Error closing");
